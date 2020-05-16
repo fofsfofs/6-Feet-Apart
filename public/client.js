@@ -10,6 +10,7 @@ socket.addEventListener("open", () => {
 socket.addEventListener("message", (event) => {
   console.log(`Message from server: ${event.data}`);
   videoID = event.data;
+  setTimeout(test, 3000);
 });
 
 function play() {
