@@ -7,13 +7,15 @@
   </head>
   <body>
     <input type="text" placeholder="Link..." id="link" />
-    <button onclick="play()">Pls</button>
+    <button onclick="sendURL()">Pls</button>
+    <input type="button" onclick="play()" value="PLAY" />
     <video
       id="vid"
       style="visibility: hidden;"
       width="1280"
       height="720"
       controls
+      autoplay
     >
       <source type="video/mp4" />
     </video>
