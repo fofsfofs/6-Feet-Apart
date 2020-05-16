@@ -1,10 +1,19 @@
 /*colours*/
 html,body
 {
+	/*background:url('../asset/theatre.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;*/
 	height: 100%;
 }
 
+/*navbar*/
 
+.navbar
+{
+	height: 10vh;
+}
 
 .chat-box
 {
@@ -12,16 +21,9 @@ html,body
 	height: 100%;
 }
 
-.site-title
-{
-	
-	height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .upload
 {
 	margin:1%;
 }
+
