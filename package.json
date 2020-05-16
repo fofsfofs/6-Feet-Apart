@@ -1,0 +1,24 @@
+{
+  "name": "ruhacks2020",
+  "version": "1.0.0",
+  "description": "bn",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fofsfofs/RUHacks2020.git"
+  },
+  "author": "Team Pepega",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fofsfofs/RUHacks2020/issues"
+  },
+  "homepage": "https://github.com/fofsfofs/RUHacks2020#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "ws": "^7.3.0"
+  }
+}
