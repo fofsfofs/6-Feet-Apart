@@ -17,9 +17,14 @@
   },
   "homepage": "https://github.com/fofsfofs/RUHacks2020#readme",
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "express": "^4.17.1",
+    "sass": "^1.26.5",
     "socket.io": "^2.3.0",
     "ws": "^7.3.0",
     "ytdl-core": "^2.1.2"
+  },
+  "devDependencies": {
+    "video.js": "^7.7.6"
   }
 }

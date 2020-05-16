@@ -1,0 +1,27 @@
+/*colours*/
+html,body
+{
+	height: 100%;
+}
+
+
+
+.chat-box
+{
+	border-style: solid;
+	height: 100%;
+}
+
+.site-title
+{
+	
+	height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload
+{
+	margin:1%;
+}
