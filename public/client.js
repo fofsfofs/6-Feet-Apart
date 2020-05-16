@@ -1,15 +1,25 @@
 const socket = new WebSocket("ws://192.168.0.22:3000");
 
+let ans = prompt("What is your name?");
+var videoID;
+
 socket.addEventListener("open", () => {
-  console.log("CONNECTED!");
+  socket.send(ans);
 });
 
-// socket.addEventListener("message", (event) => {
-//   console.log(`Message from server: ${event.data}`);
-// });
+socket.addEventListener("message", (event) => {
+  console.log(`Message from server: ${event.data}`);
+  videoID = event.data;
+});
 
-// socket.on("open", function open() {
-//   console.log("Connected!");
-// });
+function play() {
+  var link = document.getElementById("link").value;
+  socket.send(link);
+  setTimeout(test, 3000);
+}
 
-// console.log(socket.re);
+function test() {
+  document.getElementById("vid").src = videoID + ".mp4";
+  document.getElementById("vid").load();
+  document.getElementById("vid").style.visibility = "visible";
+}
