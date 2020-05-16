@@ -1,57 +1,45 @@
-const socket = new WebSocket("ws://192.168.0.22:3000");
-
 let ans = prompt("What is your name?");
-var vid = document.getElementById("vid");
-var videoID;
 
-socket.addEventListener("open", () => {
-  socket.send(ans);
-});
+(function () {
+  const sendBtn = document.querySelector('#send');
+  const messages = document.querySelector('#messages');
+  const messageBox = document.querySelector('#messageBox');
 
-socket.addEventListener("message", (event) => {
-  console.log(`Message from server: ${event.data}`);
-  if (event.data == "playing" && vid.paused == true) {
-    console.log("hi");
-    var playPromise = vid.play();
+  let ws;
 
-    if (playPromise !== undefined) {
-      playPromise
-        .then((_) => {
-          // Automatic playback started!
-          // Show playing UI.
-        })
-        .catch((error) => {
-          // Auto-play was prevented
-          // Show paused UI.
-        });
+  function showMessage(message) {
+    messages.textContent += `\n${message}`;
+    messages.scrollTop = messages.scrollHeight;
+    messageBox.value = '';
+  }
+
+  function init() {
+    if (ws) {
+      ws.onerror = ws.onopen = ws.onclose = null;
+      ws.close();
     }
-  } else {
-    vid = document.getElementById("vid");
-    videoID = event.data;
-    setTimeout(queue, 3000);
+    ws = new WebSocket('ws://192.168.2.60:3000');
+    ws.onopen = () => {
+      console.log('Connection opened!');
+    }
+    ws.onmessage = ({
+      data
+    }) => showMessage(data);
+    ws.onclose = function () {
+      ws = null;
+    }
   }
-});
 
-function sendURL() {
-  var link = document.getElementById("link").value;
-  socket.send(link);
-}
+  sendBtn.onclick = function () {
+    if (!ws) {
+      showMessage("No WebSocket connection :(");
+      return;
+    }
 
-function queue() {
-  vid.src = videoID + ".mp4";
-  vid.load();
-  vid.style.visibility = "visible";
-}
+    ws.send(messageBox.value);
 
-function play() {
-  //   console.log("pressed");
-  socket.send("playing");
-  setInterval(isPlaying, 100);
-}
-
-function isPlaying() {
-  var vid = document.getElementById("vid");
-  if (vid.paused) {
-    socket.send("PAUSED");
+    showMessage(messageBox.value);
   }
-}
+
+  init();
+})();

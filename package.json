@@ -1,25 +1,16 @@
 {
-  "name": "ruhacks2020",
+  "name": "ruhacks-2020",
   "version": "1.0.0",
-  "description": "bn",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fofsfofs/RUHacks2020.git"
-  },
-  "author": "Team Pepega",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fofsfofs/RUHacks2020/issues"
-  },
-  "homepage": "https://github.com/fofsfofs/RUHacks2020#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "socket.io": "^2.3.0",
-    "ws": "^7.3.0",
-    "ytdl-core": "^2.1.2"
+    "websocket": "^1.0.31",
+    "ws": "^7.3.0"
   }
 }
