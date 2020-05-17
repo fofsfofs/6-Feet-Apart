@@ -2,10 +2,10 @@
 
 html,body
 {
-	/*background:url('../asset/theatre.jpg');
+	background:url('../asset/background2.jpeg');
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: cover;*/
+	background-size: cover;
 	height: 100%;
 }
 
@@ -14,16 +14,39 @@ html,body
 .navbar
 {
 	height: 10vh;
+	background:url('../asset/pepe.jpeg');
+	font-weight: bolder;
+	color:#dd252b;
+	font-size: 2em;
+	-webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
 
+.site-title
+{
+	font-size:2em;
+}
+
+/*video and chat*/
+
+.site-content
+{
+	padding:1%;
+}
 .msg-box
 {
 	border-style: solid;
+	border-width: thin;
 	height: 100%;
 }
-
 
 .feature-buttons-box
 {
 	padding-top:1%;
+}
+
+
+.chat-box
+{
+	background-color: #676b69;
 }
