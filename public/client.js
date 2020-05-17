@@ -29,25 +29,33 @@ socket.addEventListener("open", () => {
 });
 
 socket.addEventListener("message", (event) => {
+  console.log(`Message from server: ${event.data}`);
   if (event.data == "playing" && vid.paused == true) {
-    // console.log(`Message from server: ${event.data}`);
     var playPromise = vid.play();
 
     if (playPromise !== undefined) {
       playPromise
         .then((_) => {
-          // Automatic playback started!
-          // Show playing UI.
+          console.log("working");
         })
         .catch((error) => {
-          // Auto-play was prevented
-          // Show paused UI.
+          console.log(playPromise);
         });
     }
   } else if (event.data == "PAUSED" && vid.paused == false) {
-    vid.pause();
+    var playPromise = vid.pause();
+
+    if (playPromise !== undefined) {
+      playPromise
+        .then((_) => {
+          console.log("working");
+        })
+        .catch((error) => {
+          console.log(playPromise);
+        });
+    }
   } else if (event.data.includes("_ID")) {
-    console.log(`Message from server: ${event.data}`);
+    // console.log(`Message from server: ${event.data}`);
     vid = document.getElementById("vid");
     videoID = event.data;
     setTimeout(queue, 3000);
@@ -66,17 +74,11 @@ function queue() {
   if (clientData[1] == "guest") {
     vid.controls = false;
   }
-  vid.style.visibility = "visible";
-}
-
-function play() {
-  //   console.log("pressed");
-}
-
-function isPlaying() {
-  if (vid.paused) {
-    socket.send("PAUSED");
-  } else {
+  vid.onplay = function () {
     socket.send("playing");
-  }
+  };
+  vid.onpause = function () {
+    socket.send("PAUSED");
+  };
+  vid.style.visibility = "visible";
 }

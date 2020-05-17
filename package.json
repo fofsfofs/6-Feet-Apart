@@ -18,6 +18,7 @@
   "homepage": "https://github.com/fofsfofs/RUHacks2020#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "plyr": "^3.6.2",
     "socket.io": "^2.3.0",
     "ws": "^7.3.0",
     "ytdl-core": "^2.1.2"

@@ -24,9 +24,7 @@ server.on("connection", function connection(ws, req) {
       ytdl(data, { quality: "highest" }).pipe(
         fs.createWriteStream("./public/" + queue[queue.length - 1] + ".mp4")
       );
-    } else if (data.includes("PAUSED")) {
-      //   console.log(data);
-    } else if (data.includes("playing")) {
+    } else if (data.includes("playing") || data.includes("PAUSED")) {
       server.clients.forEach((client) => {
         client.send(data);
       });
