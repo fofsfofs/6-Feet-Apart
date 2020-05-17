@@ -16,7 +16,7 @@ server.on("connection", function connection(ws, req) {
         fs.unlinkSync("./public/" + queue[queue.length - 1] + ".mp4");
       }
 
-      videoID = data.substring(data.indexOf("=") + 1, data.length);
+      videoID = data.substring(data.indexOf("=") + 1, data.length) + "_ID";
       queue.push(videoID);
       server.clients.forEach((client) => {
         client.send(videoID);
@@ -31,7 +31,9 @@ server.on("connection", function connection(ws, req) {
         client.send(data);
       });
     } else {
-      console.log(data + " has CONNECTED!");
+      console.log(
+        JSON.parse(data)[0] + " has connected as " + JSON.parse(data)[1]
+      );
     }
   });
   //   console.log(req.ip);
