@@ -2,7 +2,6 @@
 <html>
   <head>
     <script src="client.js" type="text/javascript"></script>
-    <!-- <script src="chat.js" type="text/javascript"></script> -->
     <style>
       * {
         margin: 0;
@@ -194,80 +193,7 @@
 
         <input type="text" placeholder="Username..." id="user" />
         <button id="submit" onclick="initialize()">Submit</button>
-        <br />
-        <!-- <div class="username-field">
-          <div class="username-buttons col-3">
-            <form id="usernameform" action="">
-              <div class="input-group mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  size="100"
-                  placeholder="Your name"
-                  id="name"
-                />
-                <div
-                  class="input-group-append"
-                  type="button"
-                  name="join"
-                  id="join"
-                  value="Join"
-                >
-                  <span class="input-group-text">Join </span>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div> -->
       </div>
     </div>
-
-    <!-- <script src="/socket.io/socket.io.js"></script>
-    <script src="https://vjs.zencdn.net/7.7.6/video.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-      var socket = io();
-    </script>
-
-    <script>
-      $(document).ready(function () {
-        $("#join").click(function () {
-          $("#usernameform").toggle();
-        });
-      });
-      $(function () {
-        var socket = io();
-
-        $("#join").click(function () {
-          var name = $("#name").val();
-          if (name != "") {
-            socket.emit("join", name);
-            ready = true;
-          }
-        });
-
-        $("form").submit(function (e) {
-          e.preventDefault(); // prevents page reloading
-          socket.emit("chat message", $("#m").val());
-          $("#m").val("");
-          return false;
-        });
-
-        socket.on("chat message", function (msg) {
-          $("#messages").append($("<li>").text(msg));
-        });
-
-        socket.on("update-people", function (people) {
-          if (ready) {
-            $.each(people, function (clientid, name) {
-              nickname.append("<li>" + name + "</li>");
-            });
-          }
-        });
-        socket.on("update", function (msg) {
-          if (ready) $("#messages").append("<li>" + msg + "</li>");
-        });
-      });
-    </script> -->
   </body>
 </html>
