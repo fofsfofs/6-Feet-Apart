@@ -2,7 +2,6 @@
 <html>
 <head>
   <script src="client.js" type="text/javascript"></script>
-  <!-- <script src="chat.js" type="text/javascript"></script> -->
   <style>
     * {
       margin: 0;
@@ -104,10 +103,69 @@
     #messages li:nth-child(odd) {
       background: #eee;
     }
-    .feat-but
-    {
-      margin: 0 1%;
-    }
+
+    .form-check-label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.form-check-label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.form-check-label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.form-check-label input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.form-check-label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.form-check-label .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
   </style>
   <link
   rel="stylesheet"
@@ -125,7 +183,7 @@
 
 <body>
   <div class="navbar navbar-default" role="banner">
-    <div class="site-title col-9">Social Distance Party</div>
+    <div class="site-title col-9">6 Feet Apart Online</div>
     <div class="site-descp col-3 text-right">
       <p>Fun Times.</p>
       <p>Cozy Times.</p>
@@ -135,42 +193,52 @@
   <div class="site-content container-fluid">
     <div class="row">
       <div class="video-column col-9">
-       <video id="vid" class="video-js vjs-default-skin vjs-big-play-centered"
-       controls
-       width="100%"
-       height="100%"
-       data-setup='{ 
-       "techOrder": ["youtube"],
-       "aspectRatio":"16:9", "fluid": true,
-       "sources": [{ "type": "video/mp4"]
-     }'
-     ></video>
-   </div>
+        <video
+        id="vid"
+        width="100%"
+        height="100%"
+        style="visibility: hidden;"
+        controls
+        >
+        <source type="video/mp4" />
+      </video>
+    </div>
 
-   <div class="chat-column col-3">
-    <div class="msg-box">
-      <ul id="chatbox"></ul>
+    <div class="chat-column col-3">
+      <div class="msg-box">
+        <ul id="chatbox"></ul>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="feature-buttons-box container-fluid">
   <div class="row">
-    <div class="feature-buttons col-6">
-      <div class="input-group-prepend">
-        <button class="feat-but btn btn-primary" type="button" data-toggle="collapse" data-target="#link"  role="button" aria-expanded="false" aria-controls="link" onclick="showLink()">Host</button>
-        <div class="collapse" id="link">
-          <div id="link">
-            <input type="text" class="form-control" style="width: 100%" placeholder="Link..." id="link"/>
-          </div>
+    <div class="col-3">
+      <div class = "input-group mb-3">
+        <input class ="form-control" type="text" placeholder="Username..." id="user" />
+        <div class="input-group-prepend">
+          <button id="submit" onclick="initialize()">Submit</button>
         </div>
-        <button class="feat-but btn btn-primary" type="button">Guest</button>
       </div>
+    </div>
+    <div class="feature-buttons col-3">
+      <form id="init">
+        <div class="form-check">
+
+          <input class="userBTN form-check-input" type="radio" name="client_type" id="host" value="host" />
+          <label class="form-check-label radio-inline" for="host">Host</label>
+        </div>
+        <div class="form-check">
+          <input class="userBTN form-check-input" type="radio" name="client_type" id="guest" value="guest" />
+          <label class="form-check-label radio-inline" for="guest">Guest</label>
+        </div>
+
+      </form>
 
     </div>
 
-    <div class="msg-input col-3 offset-3">
+    <div class="msg-input offset-3 col-3">
       <form id="chatform" onSubmit="return false;">
         <input id="m" placeholder="Chat Away" />
       </form>
@@ -181,90 +249,15 @@
         </div>
       </div>
       <div class="row">
-        <form id="init">
-          <input type="radio" name="client_type" id="host" value="host" />
-          <label for="host">Host</label>
-          <input type="radio" name="client_type" id="guest" value="guest" />
-          <label for="guest">Guest</label>
-        </form>
-        <br />
+        <div class="col-6">
+          <div style="visibility: hidden;" class="input-group mb-3">
+            <input type="text" placeholder="Link..." id="link" />
+            <button id="add" onclick="sendURL()">Add</button>
 
-        <input type="text" placeholder="Username..." id="user" />
-        <button id="submit" onclick="initialize()">Submit</button>
-        <br />
-        <!-- <div class="username-field">
-          <div class="username-buttons col-3">
-            <form id="usernameform" action="">
-              <div class="input-group mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  size="100"
-                  placeholder="Your name"
-                  id="name"
-                />
-                <div
-                  class="input-group-append"
-                  type="button"
-                  name="join"
-                  id="join"
-                  value="Join"
-                >
-                  <span class="input-group-text">Join </span>
-                </div>
-              </div>
-            </form>
           </div>
-        </div> -->
+          
+        </div>
       </div>
     </div>
-
-    <!-- <script src="/socket.io/socket.io.js"></script>
-    <script src="https://vjs.zencdn.net/7.7.6/video.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-      var socket = io();
-    </script>
-
-    <script>
-      $(document).ready(function () {
-        $("#join").click(function () {
-          $("#usernameform").toggle();
-        });
-      });
-      $(function () {
-        var socket = io();
-
-        $("#join").click(function () {
-          var name = $("#name").val();
-          if (name != "") {
-            socket.emit("join", name);
-            ready = true;
-          }
-        });
-
-        $("form").submit(function (e) {
-          e.preventDefault(); // prevents page reloading
-          socket.emit("chat message", $("#m").val());
-          $("#m").val("");
-          return false;
-        });
-
-        socket.on("chat message", function (msg) {
-          $("#messages").append($("<li>").text(msg));
-        });
-
-        socket.on("update-people", function (people) {
-          if (ready) {
-            $.each(people, function (clientid, name) {
-              nickname.append("<li>" + name + "</li>");
-            });
-          }
-        });
-        socket.on("update", function (msg) {
-          if (ready) $("#messages").append("<li>" + msg + "</li>");
-        });
-      });
-    </script> -->
   </body>
   </html>

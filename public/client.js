@@ -23,8 +23,8 @@ window.onload = function () {
 
 function addToChat(message, from) {
   var node = document.createElement("LI");
-  node.innerText = from + ": " + message;
   node.style.borderBottom = "solid 1px";
+  node.innerText = from + ": " + message;
   document.querySelector("#chatbox").appendChild(node);
 }
 
@@ -39,7 +39,7 @@ function initialize() {
   }
 
   let message = ["from", "content"];
-  message[0] = "Server";
+  message[0] = "Chat";
   message[1] = clientData[0] + " has joinedMSG";
   webSocket.send(this.JSON.stringify(message));
 
@@ -125,8 +125,3 @@ function queue() {
 
 // class="video-js vjs-big-play-centered"
 // data-setup='{"fluid": true}'
-
-function showLink() {
-  var link = document.getElementById("link");
-  link.style.display = "inline-block";
-}
