@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RUHacks 2020</title>
+    <script src="hammer.min.js" type="text/javascript"></script>
+    <script src="client.js" type="text/javascript"></script>
+    <h1>bn</h1>
+  </head>
+  <body>
+    <form id="init">
+      <input type="radio" name="client_type" id="host" value="host" />
+      <label for="host">Host</label>
+      <input type="radio" name="client_type" id="guest" value="guest" />
+      <label for="guest">Guest</label>
+    </form>
+    <br />
+
+    <input type="text" placeholder="Username..." id="user" />
+    <button id="submit" onclick="initialize()">Submit</button>
+    <br />
+
+    <div id="main" style="visibility: hidden;">
+      <input type="text" placeholder="Link..." id="link" />
+      <button id="add" onclick="sendURL()">Add</button>
+      <input type="button" onclick="play()" value="PLAY" />
+      <video
+        id="vid"
+        style="visibility: hidden;"
+        width="1280"
+        height="720"
+        controls
+      >
+        <source type="video/mp4" />
+      </video>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,28 @@
-const socket = new WebSocket("ws://192.168.0.22:3000");
+const webSocket = new WebSocket("ws://192.168.0.22:3000");
 var vid = document.getElementById("vid");
 var videoID;
 clientData = [];
+
+window.onload = function () {
+  chatform = document.querySelector("#chatform");
+
+  if (chatform) {
+    chatform.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let message = document.querySelector("#m").value;
+      addToChat(message);
+      webSocket.send(message + "MSG");
+      //   console.log(message);
+      document.querySelector("#m").value = "";
+    });
+  }
+};
+
+function addToChat(message) {
+  var node = document.createElement("LI");
+  node.innerText = clientData[0] + ": " + message;
+  document.querySelector("#chatbox").appendChild(node);
+}
 
 function initialize() {
   form = document.getElementById("init");
@@ -13,7 +34,11 @@ function initialize() {
     }
   }
 
-  socket.send(JSON.stringify(clientData));
+  var node = document.createElement("LI");
+  node.innerText = clientData[0] + " has joined";
+  document.querySelector("#chatbox").appendChild(node);
+
+  webSocket.send(JSON.stringify(clientData));
   form.style.visibility = "hidden";
   document.getElementById("user").style.visibility = "hidden";
   document.getElementById("submit").style.visibility = "hidden";
@@ -24,34 +49,34 @@ function initialize() {
   }
 }
 
-socket.addEventListener("open", () => {
+webSocket.addEventListener("open", () => {
   //   socket.send(ans);
 });
 
-socket.addEventListener("message", (event) => {
+webSocket.addEventListener("message", (event) => {
   console.log(`Message from server: ${event.data}`);
   if (event.data == "playing" && vid.paused == true) {
-    var playPromise = vid.play();
+    var pausePromise = vid.play();
 
-    if (playPromise !== undefined) {
-      playPromise
+    if (pausePromise !== undefined) {
+      pausePromise
         .then((_) => {
-          console.log("working");
+          //   console.log("working");
         })
         .catch((error) => {
-          console.log(playPromise);
+          console.log("Could not play!");
         });
     }
   } else if (event.data == "PAUSED" && vid.paused == false) {
-    var playPromise = vid.pause();
+    var pausePromise = vid.pause();
 
-    if (playPromise !== undefined) {
-      playPromise
+    if (pausePromise !== undefined) {
+      pausePromise
         .then((_) => {
-          console.log("working");
+          //   console.log("working");
         })
         .catch((error) => {
-          console.log(playPromise);
+          console.log("Could not pause!");
         });
     }
   } else if (event.data.includes("_ID")) {
@@ -60,12 +85,13 @@ socket.addEventListener("message", (event) => {
     videoID = event.data;
     setTimeout(queue, 3000);
     // setInterval(isPlaying, 100);
+  } else if (event.data.includes("MSG")) {
   }
 });
 
 function sendURL() {
   var link = document.getElementById("link").value;
-  socket.send(link);
+  webSocket.send(link);
 }
 
 function queue() {
@@ -75,10 +101,13 @@ function queue() {
     vid.controls = false;
   }
   vid.onplay = function () {
-    socket.send("playing");
+    webSocket.send("playing");
   };
   vid.onpause = function () {
-    socket.send("PAUSED");
+    webSocket.send("PAUSED");
   };
   vid.style.visibility = "visible";
 }
+
+// class="video-js vjs-big-play-centered"
+// data-setup='{"fluid": true}'
