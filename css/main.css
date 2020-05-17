@@ -52,8 +52,12 @@ html,body
 	padding-top:1%;
 }
 
+.send-container
+{
+	width:100%;
+}
 
 .chat-box
 {
-	background-color: #676b69;
+	display:inline;
 }
