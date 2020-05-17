@@ -58,10 +58,15 @@
       border-style: solid;
       border-width: thin;
       height: 100%;
+      overflow-x: hidden;
     }
 
     .feature-buttons-box {
       padding-top: 1%;
+    }
+
+    .form-control {
+      display: inline-block !important;
     }
 
     #msgform {
@@ -190,22 +195,24 @@
 
       </div>
     </div>
-  </div>
-
-  <div class="username-field container-fluid">
     <div class="row">
-      <form id="usernameform" action="">
-      <div class="feature-buttons col-9">
-        
-          <div class="input-group mb-3">
-
-            <input type="text" class="form-control" placeholder="Your name" id="name">
-            <input class="btn btn-primary" type="button" name="join" id="join" value="Join">
-          </div>
+      <div class="username-field">
+        <div class="username-buttons col-3">
+          <form id="usernameform" action="">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" size="100" placeholder="Your name" id="name">
+              <div class="input-group-append" type="button" name="join" id="join" value="Join">
+                <span class="input-group-text">Join
+                </span>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </form>
     </div>
   </div>
+
+
 
 
 
@@ -242,6 +249,7 @@
 
       socket.on('chat message', function (msg) {
         $('#messages').append($('<li>').text(msg));
+
       });
 
       socket.on("update-people", function (people) {
