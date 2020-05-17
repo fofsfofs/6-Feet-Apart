@@ -2,7 +2,6 @@
 <html>
 
 <head>
-  <title>idk</title>
   <style>
     * {
       margin: 0;
@@ -10,10 +9,60 @@
       box-sizing: border-box;
     }
 
-    body {
-      font: 13px Helvetica, Arial;
+    /*colours*/
+    @keyframes animatedBackground {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 100% 0;
+      }
     }
 
+    html,
+    body {
+      background: url("https://raw.githubusercontent.com/fofsfofs/RUHacks2020/front-end/asset/background2.jpeg?token=AIM43AFRLFOKLV4DLOLWZZK6ZHW6U");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100%;
+
+    }
+
+    /*navbar*/
+
+    .navbar {
+      height: 15vh;
+      background: url("https://raw.githubusercontent.com/fofsfofs/RUHacks2020/front-end/asset/pepe.jpeg?token=AIM43ABF3JFOQBTVFDGB4OC6ZHYLA");
+      font-weight: bolder;
+      color: #dd252b;
+      font-size: 2em;
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: black;
+      background-repeat: repeat-x;
+      animation: animatedBackground 15s linear infinite;
+    }
+
+    .site-title {
+      font-size: 2em;
+    }
+
+    /*video and chat*/
+
+    .site-content {
+      padding: 1%;
+    }
+
+    .msg-box {
+      border-style: solid;
+      border-width: thin;
+      height: 100%;
+    }
+
+    .feature-buttons-box {
+      padding-top: 1%;
+    }
 
     #msgform {
       background: #000;
@@ -51,24 +100,121 @@
       background: #eee;
     }
   </style>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link href="https://vjs.zencdn.net/7.7.6/video-js.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Social Distance Party</title>
+
 </head>
 
 <body>
-  <ul id="messages"></ul>
-  <form id="msgform" action="">
-    <input id="m" autocomplete="off" /><button>Send</button>
-  </form>
-  <div id="idkanymore">
-    <form id="usernameform" action="">
-      <input type="text" class="input-small" placeholder="Your name" id="name">
-      <input type="button" name="join" id="join" value="Join" class="btn btn-secondar">
-    </form>
+
+  <div class="navbar navbar-default" role="banner">
+
+    <div class=" site-title col-9">Social Distance Party</div>
+    <div class=" site-descp col-3 text-right">
+      <p>Fun Times.</p>
+      <p> Cozy Times.</p>
+    </div>
   </div>
+
+  <div class="site-content container-fluid">
+
+    <div class="row">
+
+      <div class="video-column col-9">
+
+        <video id="my-vid" class="video-js vjs-big-play-centered" controls autoplay
+          poster="http://vjs.zencdn.net/v/oceans.png" data-setup='{"fluid": true}'>
+
+          <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+
+          <p class="vjs-no-js">
+            To view the video, please enable Javascript.
+          </p>
+        </video>
+
+      </div>
+
+      <div class="chat-column col-3">
+        <div class="msg-box">
+          <ul id="messages"></ul>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="feature-buttons-box container-fluid">
+
+    <div class="row">
+
+      <div class="feature-buttons col-9">
+
+        <div class="input-group mb-3">
+
+          <div class="custom-file">
+            <input type="file" class="custom-file-input">
+
+            <label class="
+              custom-file-label">Choose video
+            </label>
+
+          </div>
+
+          <div class="input-group-append">
+            <span class="input-group-text">Upload
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="msg-input col-3">
+
+
+        <form action="">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="m" placeholder="Chat Away" />
+          </div>
+        </form>
+        <!-- <input type="text" class="form-control" id="m" placeholder="Chat Away!"> -->
+        <!-- <div class="input-group-append">
+            
+          </div> -->
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="username-field container-fluid">
+    <div class="row">
+      <form id="usernameform" action="">
+      <div class="feature-buttons col-9">
+        
+          <div class="input-group mb-3">
+
+            <input type="text" class="form-control" placeholder="Your name" id="name">
+            <input class="btn btn-primary" type="button" name="join" id="join" value="Join">
+          </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+
+
+
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://vjs.zencdn.net/7.7.6/video.js"></script>
   <script>
     var socket = io();
   </script>
-
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script>
     $(document).ready(function () {
@@ -112,6 +258,9 @@
 
     });
   </script>
+
+
+
 </body>
 
 </html>
