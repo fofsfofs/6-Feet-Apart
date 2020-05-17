@@ -14,7 +14,8 @@
       font: 13px Helvetica, Arial;
     }
 
-    form {
+
+    #msgform {
       background: #000;
       padding: 3px;
       position: fixed;
@@ -54,26 +55,61 @@
 
 <body>
   <ul id="messages"></ul>
-  <form action="">
+  <form id="msgform" action="">
     <input id="m" autocomplete="off" /><button>Send</button>
   </form>
+  <div id="idkanymore">
+    <form id="usernameform" action="">
+      <input type="text" class="input-small" placeholder="Your name" id="name">
+      <input type="button" name="join" id="join" value="Join" class="btn btn-secondar">
+    </form>
+  </div>
   <script src="/socket.io/socket.io.js"></script>
   <script>
     var socket = io();
   </script>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script>
+    $(document).ready(function () {
+      $("#join").click(function () {
+        $("#usernameform").toggle();
+      });
+    });
     $(function () {
       var socket = io();
-      $('form').submit(function(e){
+
+      $("#join").click(function () {
+        var name = $("#name").val();
+        if (name != "") {
+          socket.emit("join", name);
+          ready = true;
+        }
+      });
+
+      $('form').submit(function (e) {
         e.preventDefault(); // prevents page reloading
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
         return false;
       });
-      socket.on('chat message', function(msg){
+
+      socket.on('chat message', function (msg) {
         $('#messages').append($('<li>').text(msg));
       });
+
+      socket.on("update-people", function (people) {
+        if (ready) {
+          $.each(people, function (clientid, name) {
+            nickname.append("<li>" + name + "</li>");
+          });
+        }
+      });
+      socket.on("update", function (msg) {
+        if (ready)
+          $("#messages").append("<li>" + msg + "</li>");
+      });
+
     });
   </script>
 </body>
