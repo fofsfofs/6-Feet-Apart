@@ -1,4 +1,4 @@
-const webSocket = new WebSocket("ws://192.168.0.22:3000");
+const webSocket = new WebSocket("ws://192.168.2.16:8000");
 var vid = document.getElementById("vid");
 var videoID;
 clientData = [];
@@ -24,6 +24,7 @@ window.onload = function () {
 function addToChat(message, from) {
   var node = document.createElement("LI");
   node.innerText = from + ": " + message;
+  node.style.borderBottom="solid 1px";
   document.querySelector("#chatbox").appendChild(node);
 }
 
@@ -124,3 +125,9 @@ function queue() {
 
 // class="video-js vjs-big-play-centered"
 // data-setup='{"fluid": true}'
+
+function showLink()
+{
+  var link = document.getElementById("link");
+  link.style.display = "inline-block";
+}

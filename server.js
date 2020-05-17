@@ -3,7 +3,7 @@ var ws = require("ws");
 var app = express();
 const fs = require("fs");
 const ytdl = require("ytdl-core");
-const server = new ws.Server({ server: app.listen(3000) });
+const server = new ws.Server({ server: app.listen(8000) });
 
 app.use(express.static("public"));
 

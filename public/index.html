@@ -1,183 +1,180 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="client.js" type="text/javascript"></script>
-    <!-- <script src="chat.js" type="text/javascript"></script> -->
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+<head>
+  <script src="client.js" type="text/javascript"></script>
+  <!-- <script src="chat.js" type="text/javascript"></script> -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /*colours*/
+    @keyframes animatedBackground {
+      from {
+        background-position: 0 0;
       }
 
-      /*colours*/
-      @keyframes animatedBackground {
-        from {
-          background-position: 0 0;
-        }
-
-        to {
-          background-position: 100% 0;
-        }
+      to {
+        background-position: 100% 0;
       }
+    }
 
-      html,
-      body {
-        background: url("https://raw.githubusercontent.com/fofsfofs/RUHacks2020/front-end/asset/background2.jpeg?token=AIM43AFRLFOKLV4DLOLWZZK6ZHW6U");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        height: 100%;
-      }
+    html,
+    body {
+      background: url("https://raw.githubusercontent.com/fofsfofs/RUHacks2020/front-end/asset/background2.jpeg?token=AIM43AFRLFOKLV4DLOLWZZK6ZHW6U");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 200%;
+    }
 
-      /*navbar*/
+    /*navbar*/
 
-      .navbar {
-        height: 15vh;
-        background: url("https://raw.githubusercontent.com/fofsfofs/RUHacks2020/front-end/asset/pepe.jpeg?token=AIM43ABF3JFOQBTVFDGB4OC6ZHYLA");
-        font-weight: bolder;
-        color: #dd252b;
-        font-size: 2em;
-        -webkit-text-stroke-width: 2px;
-        -webkit-text-stroke-color: black;
-        background-repeat: repeat-x;
-        animation: animatedBackground 15s linear infinite;
-      }
+    .navbar {
+      height: 15vh;
+      background: url("https://raw.githubusercontent.com/fofsfofs/RUHacks2020/front-end/asset/pepe.jpeg?token=AIM43ABF3JFOQBTVFDGB4OC6ZHYLA");
+      font-weight: bolder;
+      color: #dd252b;
+      font-size: 2em;
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: black;
+      background-repeat: repeat-x;
+      animation: animatedBackground 15s linear infinite;
+    }
 
-      .site-title {
-        font-size: 2em;
-      }
+    .site-title {
+      font-size: 2em;
+    }
 
-      /*video and chat*/
+    /*video and chat*/
 
-      .site-content {
-        padding: 1%;
-      }
+    .site-content {
+      padding: 1%;
+    }
 
-      .msg-box {
-        border-style: solid;
-        border-width: thin;
-        height: 100%;
-        overflow-x: hidden;
-      }
+    .msg-box {
+      border-style: solid;
+      border-width: thin;
+      height: 100%;
+      overflow-x: hidden;
+    }
 
-      .feature-buttons-box {
-        padding-top: 1%;
-      }
+    .feature-buttons-box {
+      padding-top: 1%;
+    }
 
-      .form-control {
-        display: inline-block !important;
-      }
+    .form-control {
+      display: inline-block !important;
+    }
 
-      #msgform {
-        background: #000;
-        padding: 3px;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-      }
+    #msgform {
+      background: #000;
+      padding: 3px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
 
-      form input {
-        border: 0;
-        padding: 10px;
-        width: 90%;
-        margin-right: 0.5%;
-      }
+    form input {
+      border: 0;
+      padding: 10px;
+      width: 90%;
+      margin-right: 0.5%;
+    }
 
-      form button {
-        width: 9%;
-        background: rgb(130, 224, 255);
-        border: none;
-        padding: 10px;
-      }
+    form button {
+      width: 9%;
+      background: rgb(130, 224, 255);
+      border: none;
+      padding: 10px;
+    }
 
-      #messages {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
+    #messages {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
 
-      #messages li {
-        padding: 5px 10px;
-      }
+    #messages li {
+      padding: 5px 10px;
+    }
 
-      #messages li:nth-child(odd) {
-        background: #eee;
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous"
-    />
-    <link href="https://vjs.zencdn.net/7.7.6/video-js.css" rel="stylesheet" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>Social Distance Party</title>
-  </head>
+    #messages li:nth-child(odd) {
+      background: #eee;
+    }
+    .feat-but
+    {
+      margin: 0 1%;
+    }
+  </style>
+  <link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+  crossorigin="anonymous"
+  />
+  <link href="https://vjs.zencdn.net/7.7.6/video-js.css" rel="stylesheet" />
+  <meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <title>Social Distance Party</title>
+</head>
 
-  <body>
-    <div class="navbar navbar-default" role="banner">
-      <div class="site-title col-9">Social Distance Party</div>
-      <div class="site-descp col-3 text-right">
-        <p>Fun Times.</p>
-        <p>Cozy Times.</p>
-      </div>
+<body>
+  <div class="navbar navbar-default" role="banner">
+    <div class="site-title col-9">Social Distance Party</div>
+    <div class="site-descp col-3 text-right">
+      <p>Fun Times.</p>
+      <p>Cozy Times.</p>
     </div>
+  </div>
 
-    <div class="site-content container-fluid">
-      <div class="row">
-        <div class="video-column col-9">
-          <video
-            id="vid"
-            width="1280"
-            height="720"
-            style="visibility: hidden;"
-            controls
-          >
-            <source type="video/mp4" />
-          </video>
-        </div>
+  <div class="site-content container-fluid">
+    <div class="row">
+      <div class="video-column col-9">
+       <video id="vid" class="video-js vjs-default-skin vjs-big-play-centered"
+       controls
+       width="100%"
+       height="100%"
+       data-setup='{ 
+       "techOrder": ["youtube"],
+       "aspectRatio":"16:9", "fluid": true,
+       "sources": [{ "type": "video/mp4"]
+     }'
+     ></video>
+   </div>
 
-        <div class="chat-column col-3">
-          <div class="msg-box">
-            <ul id="chatbox"></ul>
+   <div class="chat-column col-3">
+    <div class="msg-box">
+      <ul id="chatbox"></ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="feature-buttons-box container-fluid">
+  <div class="row">
+    <div class="feature-buttons col-6">
+      <div class="input-group-prepend">
+        <button class="feat-but btn btn-primary" type="button" data-toggle="collapse" data-target="#link"  role="button" aria-expanded="false" aria-controls="link" onclick="showLink()">Host</button>
+        <div class="collapse" id="link">
+          <div id="link">
+            <input type="text" class="form-control" style="width: 100%" placeholder="Link..." id="link"/>
           </div>
         </div>
+        <button class="feat-but btn btn-primary" type="button">Guest</button>
       </div>
+
     </div>
 
-    <div class="feature-buttons-box container-fluid">
-      <div class="row">
-        <div class="feature-buttons col-9">
-          <div style="visibility: hidden;" class="input-group mb-3">
-            <input type="text" placeholder="Link..." id="link" />
-            <button id="add" onclick="sendURL()">Add</button>
-            <!-- <div class="custom-file">
-              <input
-                style="visibility: hidden;"
-                id="link"
-                type="text"
-                class="custom-file-input"
-              />
-
-              <label class="custom-file-label">Choose video </label>
-            </div> -->
-
-            <!-- <div class="input-group-append">
-              <span class="input-group-text">Upload </span>
-            </div> -->
-          </div>
-        </div>
-
-        <div class="msg-input col-3">
-          <form id="chatform" onSubmit="return false;">
-            <input id="m" placeholder="Chat Away" />
-          </form>
-          <!-- <input type="text" class="form-control" id="m" placeholder="Chat Away!"> -->
+    <div class="msg-input col-3 offset-3">
+      <form id="chatform" onSubmit="return false;">
+        <input id="m" placeholder="Chat Away" />
+      </form>
+      <!-- <input type="text" class="form-control" id="m" placeholder="Chat Away!"> -->
           <!-- <div class="input-group-append">
             
           </div> -->
@@ -270,4 +267,4 @@
       });
     </script> -->
   </body>
-</html>
+  </html>
