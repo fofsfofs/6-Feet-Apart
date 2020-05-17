@@ -1,4 +1,5 @@
 /*colours*/
+
 html,body
 {
 	/*background:url('../asset/theatre.jpg');
@@ -15,15 +16,14 @@ html,body
 	height: 10vh;
 }
 
-.chat-box
+.msg-box
 {
 	border-style: solid;
 	height: 100%;
 }
 
 
-.upload
+.feature-buttons-box
 {
-	margin:1%;
+	padding-top:1%;
 }
-
