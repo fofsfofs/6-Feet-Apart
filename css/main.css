@@ -1,4 +1,8 @@
 /*colours*/
+@keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position: 100% 0; }
+}
 
 html,body
 {
@@ -7,6 +11,7 @@ html,body
 	background-repeat: no-repeat;
 	background-size: cover;
 	height: 100%;
+	
 }
 
 /*navbar*/
@@ -20,6 +25,8 @@ html,body
 	font-size: 2em;
 	-webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
+    background-repeat: repeat-x;
+	animation: animatedBackground 15s linear infinite;
 }
 
 .site-title
