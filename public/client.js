@@ -9,18 +9,21 @@ window.onload = function () {
   if (chatform) {
     chatform.addEventListener("submit", (event) => {
       event.preventDefault();
-      let message = document.querySelector("#m").value;
-      addToChat(message);
-      webSocket.send(message + "MSG");
+      let message = ["from", "content"];
+      message[0] = clientData[0];
+      message[1] = document.querySelector("#m").value;
+      addToChat(message[1], clientData[0]);
+      message[1] = document.querySelector("#m").value + "MSG";
+      webSocket.send(this.JSON.stringify(message));
       //   console.log(message);
       document.querySelector("#m").value = "";
     });
   }
 };
 
-function addToChat(message) {
+function addToChat(message, from) {
   var node = document.createElement("LI");
-  node.innerText = clientData[0] + ": " + message;
+  node.innerText = from + ": " + message;
   document.querySelector("#chatbox").appendChild(node);
 }
 
@@ -34,9 +37,10 @@ function initialize() {
     }
   }
 
-  var node = document.createElement("LI");
-  node.innerText = clientData[0] + " has joined";
-  document.querySelector("#chatbox").appendChild(node);
+  let message = ["from", "content"];
+  message[0] = "Server";
+  message[1] = clientData[0] + " has joinedMSG";
+  webSocket.send(this.JSON.stringify(message));
 
   webSocket.send(JSON.stringify(clientData));
   form.style.visibility = "hidden";
@@ -85,7 +89,16 @@ webSocket.addEventListener("message", (event) => {
     videoID = event.data;
     setTimeout(queue, 3000);
     // setInterval(isPlaying, 100);
-  } else if (event.data.includes("MSG")) {
+  } else if (
+    JSON.parse(event.data)[1].includes("MSG") &&
+    JSON.parse(event.data)[0] != clientData[0]
+  ) {
+    let message = JSON.parse(event.data)[1].substring(
+      0,
+      JSON.parse(event.data)[1].lastIndexOf("MSG")
+    );
+    let from = JSON.parse(event.data)[0];
+    addToChat(message, from);
   }
 });
 
