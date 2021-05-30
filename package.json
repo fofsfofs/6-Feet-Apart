@@ -20,7 +20,7 @@
     "express": "^4.17.1",
     "plyr": "^3.6.2",
     "video.js": "^7.7.6",
-    "ws": "^7.3.0",
+    "ws": "^7.4.6",
     "ytdl-core": "^2.1.2"
   },
   "devDependencies": {
